@@ -300,19 +300,19 @@ class CommandHandler implements Runnable {
         case "dele":
         {
             Path p = cwd.resolve(split[1]).normalize().toAbsolutePath();
-            if (!Files.exists(p)){
-		out.println("453 file "+split[1]+"doesn't exist?");
-	    }else if(Files.isDirectory(p)) {
-                out.println("451 "+split[1]+"is a directory");
+            if (!Files.exists(p)) {
+                out.println("453 file " + split[1] + "doesn't exist?");
+            }else if (Files.isDirectory(p)) {
+                out.println("451 " + split[1] + "is a directory");
             }else{
-		try{
-		    Files.delete(p);
-		}catch (Exception e) {
-		    out.println("452 Couldn't delete for some reason");
-		    break;
-		}
-		out.println("250 deleted");
-	    }
+                try{
+                    Files.delete(p);
+                }catch (Exception e) {
+                    out.println("452 Couldn't delete for some reason");
+                    break;
+                }
+                out.println("250 deleted");
+            }
         }
         break;
         case "pwd":
