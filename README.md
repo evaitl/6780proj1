@@ -40,12 +40,21 @@ command. In part because it is easier to just support passive
 connections rather than both passive and active connections, in part
 because active connections often have problems with firewalls. 
 
+Because the server is multi-threaded and supports multiple clients,
+the current working directory for each client is maintained in a
+`Path` structure on a per client basis. This allows each client to
+have its own idea of what the current working directory is.
+
+The LIST command uses PosixFileAttributes, to display extended
+information. This structure is only available on Unix systems, so the
+server will not work on a Windows box.  It does work on nike and
+should work on a mac.
 
 ## Build instructions
 
-Type "make". This should create myftp and myftpserver shell scripts
-that reference the created client.jar and server.jar. The myftp shell
-script looks like:
+Type "make". This should compile the java, create the jar files, and
+create myftp and myftpserver shell scripts that reference the created
+client.jar and server.jar. The myftp shell script looks like:
 
 ```bash
 #!/bin/sh
