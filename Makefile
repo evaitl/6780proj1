@@ -25,10 +25,10 @@ server.jar: $(CLASSES) x780/servermanifest
 
 myftp: client.jar
 	echo "#!/bin/sh" > $@
-	echo 'java -jar $< $$@' >> $@
+	echo 'java -jar $(realpath $<) $$@' >> $@
 	chmod +x $@
 
 myftpserver: server.jar
 	echo "#!/bin/sh" > $@
-	echo 'java -jar $< $$@' >> $@
+	echo 'java -jar $(realpath $<) $$@' >> $@
 	chmod +x $@
